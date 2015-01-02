@@ -28,9 +28,20 @@ class Gold(Item):
 
 
 class Weapons(Item):
-    def __init__(self, name, description, value, damage):
+    def __init__(self, name, description, value, damage, special):
         self.damage = damage
+        self.special = special
         super(Weapons, self).__init__(name, description, value)
 
     def __str__(self):
-        return "{}\n:\n{}\nValue: {}\nDamage: {}\n".format(self.name, self.description, self.value, self.damage)
+        return "{}\n:\n{}\nValue: {}\nDamage: {}\nSpecial Effect: {}\n".format(self.name, self.description, self.value, self.damage, self.special)
+    
+
+class BlasterPistol(Weapons):
+    def __init__(self):
+        super(BlasterPistol, self).__init__(name="Blaster Pistol", description="Seems like a water gun with a laser pointer. It might hurt?", value=20, damage=5,special=0)
+
+
+class BossWeapon(Weapons):
+    def __init__(self):
+        super(BossWeapon, self).__init__(name="AX-36 MatchMaker", description="Fires a pulse of pure plasma, setting whatever it hits on fire.", value=250, damage=45, special=2)
