@@ -29,9 +29,9 @@ class Enemy():
 
 class RobotUnderling(Enemy):
     def __init__(self):
-        super(RobotUnderling, self).__init__(name="Robot Underling", description="A simple minded robot that tries its best to aim for you (it really does).", hp=20, a=0, special=0)
+        super(RobotUnderling, self).__init__(name="Robot Underling", description="A simple minded robot that tries its best to aim for you (it really does).", hp=20, ap=0, special=0)
 
 
 class RobotOverlord(Enemy):
     def __init__(self):
-        super(RobotOverlord, self).__init__(name="Robot Overlord", description="So this is what those mad scientists were talking about when they said robot annilation.", hp=75, ap=25, special=2)
+        super(RobotOverlord, self).__init__(name="Robot Overlord", description="So this is what those mad scientists were talking about when they said robot annihilation.", hp=75, ap=25, special=2)
