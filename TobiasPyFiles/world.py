@@ -2,6 +2,7 @@ from TobiasPyFiles import items, enemies
 
 __author__ = 'Martin'
 
+
 class MapTile:
     def __init__(self, x, y):
         self.x = x
@@ -11,6 +12,7 @@ class MapTile:
     def modify_player(self, player):
         raise NotImplementedError()
 
+
 class InitialRoom(MapTile):
     def intro_text(self):
         return """
@@ -18,8 +20,9 @@ class InitialRoom(MapTile):
         """
 
     def modify_player(self, player):
-        #Room has no action on player
+        # Room has no action on player
         pass
+
 
 class ItemRoom(MapTile):
     def __init__(self, x, y, item):
@@ -31,6 +34,7 @@ class ItemRoom(MapTile):
 
     def modify_player(self, player):
         self.add_loot(player)
+
 
 class HostileRoom(MapTile):
     def __init__(self, x, y, enemy):
