@@ -1,48 +1,15 @@
-from TobiasPyFiles import items, enemies
 
 __author__ = 'Martin'
 
+_world = {}
 
-class MapTile:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-    def intro_text(self):
-        raise NotImplementedError()
-    def modify_player(self, player):
-        raise NotImplementedError()
-
-
-class InitialRoom(MapTile):
-    def intro_text(self):
-        return """
-        Tobias stood there, choosing between a doors that might lead to his impending doom
-        """
-
-    def modify_player(self, player):
-        # Room has no action on player
-        pass
-
-
-class ItemRoom(MapTile):
-    def __init__(self, x, y, item):
-        self.item = item
-        super(ItemRoom, self).__init__(x, y)
-
-    def add_loot(self, player):
-        player.inventory.append(self.item)
-
-    def modify_player(self, player):
-        self.add_loot(player)
-
-
-class HostileRoom(MapTile):
-    def __init__(self, x, y, enemy):
-        self.enemy = enemy
-        super(HostileRoom, self).__init__(x, y)
-
-    def modify_player(self, the_player):
-        if self.enemy.is_alive():
-            the_player.hp = the_player.hp - self.enemy.damage
-            print("Entity does {} damage. You're down to {} HP.".format(self.enemy.damage, the_player.hp))
-
+def load_tiles():
+    """Parses a file that describes the world space into the _world object"""
+    with open('resources/map.txt', 'r') as f:
+        rows = f.readlines()
+    x_max = len(rows[0].split('\t')) # Assumes all rows contain the same number of tabs
+    for y in range(len(rows)):
+        cols = rows[y].split('\t')
+        for x in range(x_max):
+            tile_name = cols[x].replace('\n', '') # Windows users may need to replace '\r\n'
+            _world[(x, y)] = None if tile_name == '' else getattr(__import__('tiles'), tile_name)(x, y)
