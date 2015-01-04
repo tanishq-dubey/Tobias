@@ -60,7 +60,7 @@ class Player:
             if enemy.useArmor():
                 enemy.ap -= damage
                 if enemy.ap <= 0:
-                    print("You use your{} against {}, and destroy their armor!")
+                    print("You use your {} against {}, and destroy their armor!")
                 else:
                     print("You use your {} against {}, dealing {} damage to their armor!".format(self.weaponInventory[self.chosenWeapon], enemy.name, damage))
             else:

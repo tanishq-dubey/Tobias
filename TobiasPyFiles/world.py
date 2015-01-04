@@ -16,7 +16,7 @@ class MapTile:
 class InitialRoom(MapTile):
     def intro_text(self):
         return """
-        Tobias stood there, choosing between a doors that might lead to his impending doom
+        Tobias stood there, choosing between the doors that might lead to his impending doom
         """
 
     def modify_player(self, player):
