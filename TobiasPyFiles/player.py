@@ -6,7 +6,7 @@ __author__ = 'Tanishq Dubey'
 class Player:
 
     itemInventory = []
-    weaponInventory = [items.Weapons]
+    weaponInventory = []
 
     hp = 100
 
@@ -25,7 +25,7 @@ class Player:
             print(item, '\n')
 
     def printWeaponInventory(self):
-        for item in self.weaponInventory:
+        for items in self.weaponInventory:
             print(items.Weapons, '\n')
 
     def move(self, dx, dy):

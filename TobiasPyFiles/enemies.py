@@ -12,13 +12,16 @@
 __author__ = 'Tanishq Dubey'
 
 
-class Enemy():
+class Enemy(object):
     def __init__(self, name, description, hp, ap, special):
         self.name = name
         self.description = description
         self.hp = hp
         self.ap = ap
         self.special = special
+
+    def __str__(self):
+        return "{}:\n{}\nHealth: {}\t Armor: {}\n".format(self.name, self.description, self.hp,self.ap)
 
     def isAlive(self):
         return self.hp > 0
