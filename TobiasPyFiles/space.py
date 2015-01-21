@@ -2,7 +2,7 @@ from TobiasPyFiles import items, enemies
 
 __author__ = 'Martin'
 
-class MapSpace:
+class MapSpace(object):
     def __init__(self, x, y):
         self.x = x
         self.y = y

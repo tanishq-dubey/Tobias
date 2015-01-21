@@ -6,7 +6,7 @@ __author__ = 'Tanishq Dubey'
 class Player:
 
     itemInventory = []
-    weaponInventory = [items.Weapons]
+    weaponInventory = []
 
     hp = 100
 
@@ -25,7 +25,7 @@ class Player:
             print(item, '\n')
 
     def printWeaponInventory(self):
-        for item in self.weaponInventory:
+        for items in self.weaponInventory:
             print(items.Weapons, '\n')
 
     def move(self, dx, dy):
@@ -60,7 +60,7 @@ class Player:
             if enemy.useArmor():
                 enemy.ap -= damage
                 if enemy.ap <= 0:
-                    print("You use your{} against {}, and destroy their armor!")
+                    print("You use your {} against {}, and destroy their armor!")
                 else:
                     print("You use your {} against {}, dealing {} damage to their armor!".format(self.weaponInventory[self.chosenWeapon], enemy.name, damage))
             else:
