@@ -1,8 +1,17 @@
-			LeaveCaveRoom
-	Find5GoldRoom	EmptyCavePath	GiantSpiderRoom	EmptyCavePath
-		EmptyCavePath
-		EmptyCavePath
-GiantSpiderRoom	EmptyCavePath	StartingRoom	EmptyCavePath	FindDaggerRoom
-		Find5GoldRoom
-		EmptyCavePath	OgreRoom	Find5GoldRoom
-		SnakePitRoom
+		EndingRoom		
+		EmptyShipHallway		
+		RobotOverlordRoom		
+	EmptyShipHallway	EmptyShipHallway	EmptyShipHallway	
+EmptyShipHallway	EmptyShipHallway	EmptyShipHallway	EmptyShipHallway	SpacePirateRoom
+EmptyShipHallway	FindBossWeapon	RobotUnderlingRoom	EmptyShipHallway	EmptyShipHallway
+FindGoldRoom	EmptyShipHallway	EmptyShipHallway	EmptyShipHallway	FindGoldRoom
+EmptyShipHallway	EmptyShipHallway	EmptyShipHallway	EmptyShipHallway	EmptyShipHallway
+	RobotUnderlingRoom		SpacePirateRoom	
+	FindGoldRoom		EmptyShipHallway	
+	EmptyShipHallway	EmptyShipHallway	EmptyShipHallway	
+	EmptyShipHallway		EmptyShipHallway	
+	FindMetoriteSaberRoom		FindBlasterPistol	
+	EmptyShipHallway	EmptyShipHallway	FindGoldRoom	
+		EmptyShipHallway		
+		EmptyShipHallway		
+		StartingRoom		

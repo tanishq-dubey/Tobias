@@ -30,6 +30,10 @@ class Enemy(object):
         return self.ap > 0
 
 
+class SpacePirate(Enemy):
+    def __init__(self):
+        super(SpacePirate, self).__init__(name="Space Pirate", description="A scurvy bandit who just wants your money, and you're in his way", hp= 10, ap=0, special=0)
+
 class RobotUnderling(Enemy):
     def __init__(self):
         super(RobotUnderling, self).__init__(name="Robot Underling", description="A simple minded robot that tries its best to aim for you (it really does).", hp=20, ap=0, special=0)

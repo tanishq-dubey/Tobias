@@ -14,7 +14,7 @@ Tobias
 - player.py
     - Defines all player information, including how the player attacks
     - Uses weapons made in items.py
-    - **TODO**: Test if `PlayerAttack()` works. Implement a weapon choose action here or in `actions.py`. Add a experience and leveling system, which means also add stats such a speed, intelligence, etc to both player and enemies?
+    - **TODO**: Test if `PlayerAttack()` works. Implement a weapon choose action here or in `actions.py`. Add a experience and leveling system, which means also add stats such as speed, intelligence, etc to both player and enemies?
 - actions.py
     - Actions a player can take, such as moving. Also defines hotkeys.
     - **TODO**: Write all movement actions, attack actions, and maybe a weapon switch action here.

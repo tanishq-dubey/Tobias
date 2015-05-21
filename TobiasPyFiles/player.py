@@ -14,6 +14,8 @@ class Player:
 
     ap = 0
 
+    victory = False
+
     def isPlayerAlive(self):
         return self.hp > 0
 
@@ -73,3 +75,13 @@ class Player:
         else:
             self.CheckPlayerWeapon()
             return
+
+    def flee(self, tile):
+        available_moves = tile.adjacent_moves()
+        r = random.randint(0, len(available_moves) - 1)
+        self.do_action(available_moves[r])
+
+    def do_action(self, action, **kwargs):
+        action_method = getattr(self, action.method.__name__)
+        if action_method:
+            action_method(**kwargs)
