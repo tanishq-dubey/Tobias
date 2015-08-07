@@ -1,87 +1,61 @@
 
-from TobiasPyFiles import items, enemies
+import items, enemies, world
+import random
 
 __author__ = 'Tanishq Dubey'
 
 class Player:
-
-    itemInventory = []
-    weaponInventory = []
-
+    inventory = [items.Gold(15)]
     hp = 100
-
-    chosenWeapon = None
-
-    ap = 0
-
+    location_x, location_y = (2, 16)
     victory = False
 
-    def isPlayerAlive(self):
+    def is_alive(self):
         return self.hp > 0
-
-    def isPlayerUsingArmor(self):
-        return self.ap > 0
-
-    def printItemInventory(self):
-        for item in self.itemInventory:
-            print(item, '\n')
-
-    def printWeaponInventory(self):
-        for items in self.weaponInventory:
-            print(items.Weapons, '\n')
-
-    def move(self, dx, dy):
-        self.locationX += dx
-        self.locationY += dy
-
-    def moveNorth(self):
-        self.move(dx=0, dy=-1)
-
-    def moveSouth(self):
-        self.move(dx=0, dy=1)
-
-    def moveEast(self):
-        self.move(dx=1, dy=0)
-
-    def moveWest(self):
-        self.move(dx=-1, dy=0)
-
-    def PlayerSetWeapon(self,weaponNumber):
-        self.chosenWeapon = weaponNumber
-
-    def CheckPlayerWeapon(self):
-        if(self.chosenWeapon is None):
-            print("You don't have a weapon equipped! Now would be a decent time to choose one!")
-            return False
-        else:
-            return True
-
-    def PlayerAttack(self,enemy):
-        if self.CheckPlayerWeapon():
-            damage = self.weaponInventory[self.chosenWeapon].damage
-            if enemy.useArmor():
-                enemy.ap -= damage
-                if enemy.ap <= 0:
-                    print("You use your {} against {}, and destroy their armor!")
-                else:
-                    print("You use your {} against {}, dealing {} damage to their armor!".format(self.weaponInventory[self.chosenWeapon], enemy.name, damage))
-            else:
-                enemy.hp -= damage
-                if enemy.isAlive():
-                    print("You use your {} against {}, dealing {} damage to them!".format(self.weaponInventory[self.chosenWeapon], enemy.name, damage))
-                else:
-                    print("You use your {} against {}, dealing enough damage to kill them!".format(self.weaponInventory[self.chosenWeapon], enemy.name))
-
-        else:
-            self.CheckPlayerWeapon()
-            return
-
-    def flee(self, tile):
-        available_moves = tile.adjacent_moves()
-        r = random.randint(0, len(available_moves) - 1)
-        self.do_action(available_moves[r])
 
     def do_action(self, action, **kwargs):
         action_method = getattr(self, action.method.__name__)
         if action_method:
             action_method(**kwargs)
+
+    def print_inventory(self):
+        for item in self.inventory:
+            print(item, '\n')
+
+    def move(self, dx, dy):
+        self.location_x += dx
+        self.location_y += dy
+        print(world.tile_exists(self.location_x, self.location_y).intro_text())
+
+    def move_north(self):
+        self.move(dx=0, dy=-1)
+
+    def move_south(self):
+        self.move(dx=0, dy=1)
+
+    def move_east(self):
+        self.move(dx=1, dy=0)
+
+    def move_west(self):
+        self.move(dx=-1, dy=0)
+
+    def attack(self, enemy):
+        best_weapon = None
+        max_dmg = 0
+        for i in self.inventory:
+            if isinstance(i, items.Weapons):
+                if i.damage > max_dmg:
+                    max_dmg = i.damage
+                    best_weapon = i
+
+        print("You use {} against {}!".format(best_weapon.name, enemy.name))
+        enemy.hp -= best_weapon.damage
+        if not enemy.is_alive():
+            print("You killed {}!".format(enemy.name))
+        else:
+            print("{} HP is {}.".format(enemy.name, enemy.hp))
+
+    def flee(self, tile):
+        available_moves = tile.adjacent_moves()
+        r = random.randint(0, len(available_moves) - 1)
+        self.do_action(available_moves[r])

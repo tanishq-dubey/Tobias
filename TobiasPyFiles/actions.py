@@ -1,8 +1,7 @@
-from TobiasPyFiles.player import Player
+from player import Player
 
-__author__ = 'Tanishq Dubey'
 
-class Action(object):
+class Action():
     def __init__(self, method, name, hotkey, **kwargs):
         self.method = method
         self.hotkey = hotkey
@@ -12,33 +11,36 @@ class Action(object):
     def __str__(self):
         return "{}: {}".format(self.hotkey, self.name)
 
+
 class MoveNorth(Action):
     def __init__(self):
-        super(MoveNorth, self).__init__(method=Player.moveNorth, name='Move north', hotkey='w')
+        super().__init__(method=Player.move_north, name='Move north', hotkey='n')
 
 
 class MoveSouth(Action):
     def __init__(self):
-        super(MoveSouth, self).__init__(method=Player.moveSouth, name='Move south', hotkey='s')
+        super().__init__(method=Player.move_south, name='Move south', hotkey='s')
 
 
 class MoveEast(Action):
     def __init__(self):
-        super(MoveEast, self).__init__(method=Player.moveEast, name='Move east', hotkey='d')
+        super().__init__(method=Player.move_east, name='Move east', hotkey='e')
 
 
 class MoveWest(Action):
     def __init__(self):
-        super(MoveWest, self).__init__(method=Player.moveWest, name='Move west', hotkey='a')
+        super().__init__(method=Player.move_west, name='Move west', hotkey='w')
 
-class ViewItemInventory(Action):
+
+class ViewInventory(Action):
     def __init__(self):
-        super(ViewItemInventory, self).__init__(method=Player.printItemInventory, name="View Item Inventory", hotkey='i')
+        super().__init__(method=Player.print_inventory, name='View inventory', hotkey='i')
+
 
 class Attack(Action):
     def __init__(self, enemy):
-            super(Attack, self).__init__(method=Player.PlayerAttack, name="Attack", hotkey='k',enemy = enemy)
-
+        super().__init__(method=Player.attack, name="Attack", hotkey='a', enemy=enemy)
+                
 class Flee(Action):
     def __init__(self, tile):
         super().__init__(method=Player.flee, name="Flee", hotkey='f', tile=tile)

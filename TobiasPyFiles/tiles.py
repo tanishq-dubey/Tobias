@@ -1,33 +1,37 @@
-from TobiasPyFiles import items, enemies, actions, world
-
 __author__ = 'Tanishq Dubey'
 
+import items, enemies, actions, world
+from random import randint
+
+
 class Maptile:
-	def __init__(self, x, y):
-		self.x =x
-		self.y =y
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
 
-	def intro_text(self):
-		raise NotImplementedError()
+    def intro_text(self):
+        raise NotImplementedError()
 
-	def modify_player(self, player):
-		raise NotImplementedError()
+    def modify_player(self, the_player):
+        raise NotImplementedError()
 
-	def adjacent_moves(self):
-		moves = []
-		if world.tile.exists(self.x + 1, self.y):
-			moves.append(actions.MoveEast())
-		if world.tile.exists(self.x - 1, self.y):
-			moves.append(actions.MoveWest())
-		if world.tile.exists(self.x, self.y + 1):
-			moves.append(actions.MoveNorth())
-		if world.tile.exists(self.x + 1, self.y -1):
-			moves.append(actions.MoveSouth())
+    def adjacent_moves(self):
+        moves = []
+        if world.tile_exists(self.x + 1, self.y):
+            moves.append(actions.MoveEast())
+        if world.tile_exists(self.x - 1, self.y):
+            moves.append(actions.MoveWest())
+        if world.tile_exists(self.x, self.y - 1):
+            moves.append(actions.MoveNorth())
+        if world.tile_exists(self.x, self.y + 1):
+            moves.append(actions.MoveSouth())
+        return moves
 
-	def available_actions(self):
-		moves = self.adjacent_moves()
-		moves.append(actions.ViewInventory())
-		return moves
+    def available_actions(self):
+        moves = self.adjacent_moves()
+        moves.append(actions.ViewInventory())
+
+        return moves
 
 class StartingRoom(Maptile):
 	def intro_text(self):
@@ -171,7 +175,7 @@ class FindBossWeapon(LootRoom):
 
 class FindGoldRoom(LootRoom):
 	def __init__(self, x, y):
-		super().__init__(x, y, items.BossWeapon())
+		super().__init__(x, y, items.Gold(randint(1,25)))
 
 	def intro_text(self):
 		return"""

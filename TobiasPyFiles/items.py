@@ -24,14 +24,14 @@ class Item(object):
 class Gold(Item):
     def __init__(self, amount):
         self.amount = amount
-        super(Gold, self).__init__(name="Galatic Credits", description="The standard unit of trade around the galatic republic", value=self.amount)
+        super().__init__(name="Galatic Credits", description="The standard unit of trade around the galatic republic", value=self.amount)
 
 
 class Weapons(Item):
     def __init__(self, name, description, value, damage, special):
         self.damage = damage
         self.special = special
-        super(Weapons, self).__init__(name, description, value)
+        super().__init__(name, description, value)
 
     def __str__(self):
         return "{}\n:\n{}\nValue: {}\nDamage: {}\nSpecial Effect: {}\n".format(self.name, self.description, self.value, self.damage, self.special)
@@ -39,14 +39,14 @@ class Weapons(Item):
 
 class MetoriteSaber(Weapons):
     def __init__(self):
-        super(MetoriteSaber, self).__init__(name="Metorite Alloy Saber", description="A sharp curved sword made of hardened metals from space", value="10", dameage=2, special=0)
+        super().__init__(name="Metorite Alloy Saber", description="A sharp curved sword made of hardened metals from space", value="10", damage=2, special=0)
                 
 
 class BlasterPistol(Weapons):
     def __init__(self):
-        super(BlasterPistol, self).__init__(name="Blaster Pistol", description="Seems like a water gun with a laser pointer. It might hurt?", value=20, damage=5,special=0)
+        super().__init__(name="Blaster Pistol", description="Seems like a water gun with a laser pointer. It might hurt?", value=20, damage=5,special=0)
 
 
 class BossWeapon(Weapons):
     def __init__(self):
-        super(BossWeapon, self).__init__(name="AX-36 MatchMaker", description="Fires a pulse of pure plasma, setting whatever it hits on fire.", value=250, damage=45, special=2)
+        super().__init__(name="AX-36 MatchMaker", description="Fires a pulse of pure plasma, setting whatever it hits on fire.", value=250, damage=45, special=2)
